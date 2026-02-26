@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Engineer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes matrix-rain {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        @keyframes matrix-glow {
+            0%, 100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+            50% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #0f0; }
+        }
+
+        @keyframes scan-lines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #00ff00;
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.03),
+                rgba(0, 255, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            animation: scan-lines 0.15s infinite;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 0;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px #00ff00, inset 0 0 20px rgba(0, 255, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            color: #00ff00;
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: matrix-glow 3s infinite;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 3px;
+        }
+
+        .title {
+            color: #00aa00;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .intro {
+            color: #00dd00;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .contact-links {
+            margin-top: 20px;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #00ff00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 1px solid #00ff00;
+            padding: 8px 15px;
+            letter-spacing: 1px;
+        }
+
+        .contact-links a:hover {
+            color: #000000;
+            background: #00ff00;
+            text-shadow: 0 0 10px #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 2px solid #00aa00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3), inset 0 0 15px rgba(0, 255, 0, 0.05);
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 2px;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(0, 20, 0, 0.8);
+            padding: 20px;
+            border-radius: 0;
+            border-left: 4px solid #00ff00;
+            border: 1px solid #00aa00;
+        }
+
+        .skill-category h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .skill-item {
+            margin: 8px 0;
+            color: #00dd00;
+        }
+
+        .skill-item::before {
+            content: "► ";
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #00aa00;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-item h3 {
+            color: #00ff00;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .experience-item .company {
+            color: #00dd00;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .date {
+            color: #00aa00;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .experience-item p {
+            color: #00ee00;
+            margin-bottom: 8px;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+            color: #00ee00;
+        }
+
+        .experience-item li {
+            margin: 5px 0;
+        }
+
+        .project {
+            background: rgba(0, 20, 0, 0.8);
+            padding: 20px;
+            border-radius: 0;
+            margin-bottom: 20px;
+            border-left: 4px solid #00ff00;
+            border: 1px solid #00aa00;
+        }
+
+        .project h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .project p {
+            color: #00ee00;
+        }
+
+        .project .tech {
+            color: #00dd00;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            padding: 3px 10px;
+            border-radius: 0;
+            font-size: 0.85em;
+            margin: 3px 3px 3px 0;
+            border: 1px solid #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        footer {
+            text-align: center;
+            color: #00aa00;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #00aa00;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>REFAEL SOFER</h1>
+            <p class="title">> DevOps Engineer || Cloud Architect</p>
+            <p class="intro">
+                Experienced DevOps engineer passionate about automating infrastructure, 
+                optimizing deployment pipelines, and implementing best practices for 
+                scalable and reliable systems.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com">[EMAIL]</a>
+                <a href="https://github.com" target="_blank">[GITHUB]</a>
+                <a href="https://linkedin.com" target="_blank">[LINKEDIN]</a>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>> TECHNICAL_SKILLS</h2>
+            <div class="skills">
+                <div class="skill-category">
+                    <h3>Cloud Platforms</h3>
+                    <div class="skill-item">AWS (EC2, S3, RDS, Lambda)</div>
+                    <div class="skill-item">Azure (VMs, App Service)</div>
+                    <div class="skill-item">Google Cloud Platform</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Container & Orchestration</h3>
+                    <div class="skill-item">Docker</div>
+                    <div class="skill-item">Kubernetes</div>
+                    <div class="skill-item">Docker Compose</div>
+                </div>
+                <div class="skill-category">
+                    <h3>CI/CD & Automation</h3>
+                    <div class="skill-item">Jenkins</div>
+                    <div class="skill-item">GitLab CI/CD</div>
+                    <div class="skill-item">GitHub Actions</div>
+                    <div class="skill-item">Terraform</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Monitoring & Logging</h3>
+                    <div class="skill-item">Prometheus</div>
+                    <div class="skill-item">Grafana</div>
+                    <div class="skill-item">ELK Stack</div>
+                    <div class="skill-item">DataDog</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Infrastructure as Code</h3>
+                    <div class="skill-item">Terraform</div>
+                    <div class="skill-item">Ansible</div>
+                    <div class="skill-item">CloudFormation</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Scripting</h3>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Bash/Shell</div>
+                    <div class="skill-item">Go</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>> PROFESSIONAL_EXPERIENCE</h2>
+            
+            <div class="experience-item">
+                <h3>Senior DevOps Engineer</h3>
+                <div class="company">Tech Company Inc.</div>
+                <div class="date">2022 - Present</div>
+                <ul>
+                    <li>Designed and implemented containerized microservices architecture using Kubernetes</li>
+                    <li>Reduced deployment time by 60% through CI/CD pipeline optimization</li>
+                    <li>Managed AWS infrastructure for 50+ production services</li>
+                    <li>Implemented comprehensive monitoring and alerting with Prometheus and Grafana</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>DevOps Engineer</h3>
+                <div class="company">Cloud Solutions Ltd.</div>
+                <div class="date">2020 - 2022</div>
+                <ul>
+                    <li>Automated infrastructure provisioning using Terraform and Ansible</li>
+                    <li>Set up and maintained Jenkins CI/CD pipelines for multiple teams</li>
+                    <li>Implemented Docker containerization for legacy applications</li>
+                    <li>Managed database backups and disaster recovery procedures</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Systems Administrator</h3>
+                <div class="company">Web Services Co.</div>
+                <div class="date">2018 - 2020</div>
+                <ul>
+                    <li>Managed Linux and Windows server infrastructure</li>
+                    <li>Implemented security best practices and compliance policies</li>
+                    <li>Supported application deployment and troubleshooting</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>> PROJECTS_ACHIEVEMENTS</h2>
+            
+            <div class="project">
+                <h3>Multi-Cloud Kubernetes Deployment</h3>
+                <p>Orchestrated deployment of Kubernetes clusters across AWS and Azure with automated failover capabilities.</p>
+                <div class="tech">
+                    <span class="tech-badge">Kubernetes</span>
+                    <span class="tech-badge">AWS</span>
+                    <span class="tech-badge">Azure</span>
+                    <span class="tech-badge">Terraform</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>CI/CD Pipeline Modernization</h3>
+                <p>Migrated legacy deployment processes to GitHub Actions, reducing build times by 50% and improving code quality.</p>
+                <div class="tech">
+                    <span class="tech-badge">GitHub Actions</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">Git</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>Infrastructure as Code Framework</h3>
+                <p>Developed reusable Terraform modules for rapid environment provisioning and disaster recovery.</p>
+                <div class="tech">
+                    <span class="tech-badge">Terraform</span>
+                    <span class="tech-badge">AWS</span>
+                    <span class="tech-badge">Python</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>Monitoring & Observability Stack</h3>
+                <p>Implemented comprehensive monitoring solution with Prometheus, Grafana, and ELK stack for centralized logging and alerting.</p>
+                <div class="tech">
+                    <span class="tech-badge">Prometheus</span>
+                    <span class="tech-badge">Grafana</span>
+                    <span class="tech-badge">ELK Stack</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>> CERTIFICATIONS_EDUCATION</h2>
+            <div class="experience-item">
+                <h3>AWS Certified Solutions Architect – Professional</h3>
+                <div class="company">Amazon Web Services</div>
+                <div class="date">2023</div>
+            </div>
+            <div class="experience-item">
+                <h3>Certified Kubernetes Administrator (CKA)</h3>
+                <div class="company">Cloud Native Computing Foundation</div>
+                <div class="date">2022</div>
+            </div>
+            <div class="experience-item">
+                <h3>Bachelor's Degree in Computer Science</h3>
+                <div class="company">University Name</div>
+                <div class="date">2018</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 REFAEL SOFER | DevOps Engineer Portfolio | All systems operational.</p>
+        </footer>
+    </div>
+</body>
+</html>
