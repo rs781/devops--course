@@ -1,15 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-@keyframes matrix-glow {
-    0%, 100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-    50% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #0f0; }
-}
-
-@keyframes scan-lines {
-    0% { transform: translateY(0); }
+    box-sizing: borderorm: translateY(0); }
     100% { transform: translateY(10px); }
 }
 
